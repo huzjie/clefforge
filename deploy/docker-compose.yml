@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  clefforge:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - CLEFFORGE_BACKEND=mock
+      - CLEFFORGE_MODEL=clef-flash
+    restart: unless-stopped

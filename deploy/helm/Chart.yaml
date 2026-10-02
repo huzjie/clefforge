@@ -1,0 +1,6 @@
+apiVersion: v2
+name: clefforge
+description: Multimodal decision-model serving (Cloudflare Clef direction)
+type: application
+version: 1.0.0
+appVersion: "1.0.0"

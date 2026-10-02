@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-clefforge
+  labels:
+    app: {{ .Release.Name }}-clefforge
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-clefforge
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-clefforge
+    spec:
+      containers:
+        - name: clefforge
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8000
+          env:
+            - name: CLEFFORGE_BACKEND
+              value: {{ .Values.config.backend | quote }}
+            - name: CLEFFORGE_MODEL
+              value: {{ .Values.config.model | quote }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}

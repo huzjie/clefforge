@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clefforge"
+version = "1.0.0"
+description = "Multimodal decision-model training & inference framework (Cloudflare Clef direction)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "ai-daily-agent" }]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.optional-dependencies]
+http = ["requests>=2.28"]
+all = ["requests>=2.28", "pyyaml>=6.0"]
+
+[project.scripts]
+clefforge = "clefforge.cli.main:main"
+
+[tool.setuptools.packages.find]
+include = ["clefforge*"]
